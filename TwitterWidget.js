@@ -1,5 +1,5 @@
 /**
- * Twitter Widget - A small utility for assing Twitter widgets
+ * Twitter Widget - A small utility for adding Twitter widgets
  *
  * @Author(s): [[User:Shining-Armor]] [[User:Deadcoder]]
  */
