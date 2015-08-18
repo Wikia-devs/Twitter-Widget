@@ -5,37 +5,30 @@
  */
 
 /**
- * <div class="twitter-embed-widget">
- *     <span style="display:none;" class="twitter-name">{{{1|}}}</span>
- *     <span style="display:none;" class="twitter-code">{{{2|}}}</span>
- *     <div class="twitter-widget-container">Loading...</div>
- * </div>
+ * <span>
+ * <span class="twitter-feed" href="https://twitter.com/Natewatson999/lists/france-t-l-visions" data-widget-id="599633699425124352" source="https://twitter.com/Natewatson999/lists/france-t-l-visions"></span>
+ * <span class="twitter-feed" href="https://twitter.com/QuentinMerabet" data-widget-id="362615676986335235" source="@QuentinMerabet"></span>
+ * </span>
  */
 
-$(function () {
-    var widgets = $('.twitter-embed-widget');
-    
-    $(widgets).each(function() {
-        var name = $(this).find('.twitter-name')[0].textContent,
-            code = $(this).find('.twitter-code')[0].textContent;
-        
-        var node = document.createElement('a');
-            node.setAttribute('class', 'twitter-timeline');
-            node.setAttribute('href', 'https://twitter.com/' + mw.html.escape(name));
-            node.setAttribute('data-widget-id', mw.html.escape(code));
-            node.textContent = 'Tweets by @' + mw.html.escape(name);
-        
-        $(this).find('.twitter-widget-container')[0].textContent = '';
-        $(this).find('.twitter-widget-container')[0].appendChild(node);
-    });
-    
-    !function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, "script", "twitter-wjs");
+$(".twitter-feed").each(function(index){
+	$(this).append('<scr' + 'ipt>\
+		!function(d,s,id){\
+			var js, fjs=d.getElementsByTagName(s)[0];\
+			if(!d.getElementById(id)){ \
+				js=d.createElement(s);\
+				js.id=id;\
+				js.src="https://platform.twitter.com/widgets.js"; \
+				fjs.parentNode.insertBefore(js,fjs);\
+			}\
+		}(document,"script","twitter-wjs");\
+		</scr' + 'ipt>');
+	var $input = $( this );
+	$(this).prepend('<a class="twitter-timeline" href="' 
+		+ mw.html.escape($input.attr('href')) 
+		+ '" data-widget-id="' 
+		+ mw.html.escape($input.attr('data-widget-id')) 
+		+ '" width="700" height="1250">Tweets from ' 
+		+ mw.html.escape($input.attr('source')) 
+		+ '</a>');
 });
